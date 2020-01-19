@@ -93,5 +93,5 @@ RUN chmod a+x /app/kcptun/kcptun-start.sh
 # entrypoint 
 COPY start.sh /app/
 RUN chmod a+x /app/start.sh
-ENTRYPOINT ["/bin/sh", "-c", "/app/start.sh"]
-CMD ["-p ${SS_PORT} -k ${SS_PASSWORD} -m ${SS_METHOD} -O ${SS_PROTOCOL} -o ${SS_OBFS}"]
+ENTRYPOINT ["/app/start.sh"]
+CMD []

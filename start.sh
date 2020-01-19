@@ -5,6 +5,11 @@ if [ $NO_KCP = "F" ]; then
         exec /app/kcptun/kcptun-start.sh > /app/data/kcptun.log 2>&1 &
 fi
 
+echo "sdf $0 $1 $2" 
+echo ${SS_PASSWORD} $SS_PASSWORD
+cd shadowsocksr \
+        && rm mudb.json \
+        && python /app/shadowsocksr/mujson_mgr.py -a -u MUDB -p ${SS_PORT} -k ${SS_PASSWORD} -m ${SS_METHOD} -O ${SS_PROTOCOL} -o ${SS_OBFS} -G "#"
 # ssr+bbr
 if [ $# -gt 0 ];
 then
@@ -30,7 +35,7 @@ then
                 done
 fi
 cp /app/shadowsocksr/mudb.json /app/data/mudb.json
-cat /app/shadowsocksr/mudb.json | awk '$1=="\"port\":" {print $NF+0}' | awk '$NF<=65535' > /app/data/mudb_port.txt
+cat /app/data/mudb.json | awk '$1=="\"port\":" {print $NF+0}' | awk '$NF<=65535' > /app/data/mudb_port.txt
 
 echo -n "" > /app/ssr-bbr/rinetd.conf
 while read line
