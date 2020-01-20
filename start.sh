@@ -7,8 +7,7 @@ fi
 
 cd shadowsocksr \
         && rm mudb.json \
-        && python /app/shadowsocksr/mujson_mgr.py -a -u MUDB -p ${SS_PORT} -k ${SS_PASSWORD} \
-        && -m ${SS_METHOD} -O ${SS_PROTOCOL} -o ${SS_OBFS} -G "#" > /app/data/ss-config.log 2>&1
+        && python /app/shadowsocksr/mujson_mgr.py -a -u MUDB -p ${SS_PORT} -k ${SS_PASSWORD} -m ${SS_METHOD} -O ${SS_PROTOCOL} -o ${SS_OBFS} -G "#" > /app/data/ss-config.log 2>&1
 # ssr+bbr
 if [ $# -gt 0 ];
 then
