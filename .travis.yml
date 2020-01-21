@@ -1,0 +1,22 @@
+sudo: required
+
+services:
+  - docker
+
+language: python
+
+before_install:
+
+install:
+
+script:
+  - docker build -t wangnew2013/ssr-bbr-kcp-netspeeder .
+  - docker run --privileged -d -p 16263:16263 -e SS_PORT="16363" wangnew2013/ssr-bbr-kcp-netspeeder --restart always
+  
+after_success:
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master
