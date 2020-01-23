@@ -5,7 +5,8 @@
 ```shell
 docker run --privileged -d \
 -p 12345:12345 \
--p 23456:23456 \
+-p 23456:23456/tcp \
+-p 23456:23456/udp \
 -e SS_PORT=12345 \
 -e SS_PASSWORD=ss-passwd \
 -e SS_METHOD=rc4-md5 \
@@ -31,7 +32,7 @@ Keep the Docker container running automatically after starting, add **--restart 
 ## Use env to config
 
 ```shell
-ENV SS_PORT="12948" \
+ENV SS_PORT="12345" \
     SS_PASSWORD="ssr-passwd" \
     SS_METHOD="none" \
     SS_PROTOCOL="auth_chain_a" \
@@ -40,7 +41,7 @@ ENV SS_PORT="12948" \
     KCPTUN_CONF="/app/data/kcptun_config.json" \
     KCPTUN_LISTEN=45678 \
     KCPTUN_SS_LISTEN=34567 \
-    KCPTUN_SOCKS5_PORT=12948 \
+    KCPTUN_SOCKS5_PORT=12345 \
     KCPTUN_KEY=password \
     KCPTUN_CRYPT=aes \
     KCPTUN_MODE=fast2 \
